@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType,
     Symfony\Component\Form\FormInterface;
 
 use Stp\RedactorBundle\Model\RedactorService;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  *
@@ -30,31 +31,31 @@ class RedactorType extends AbstractType
     }
 
     /**
-     * @param \Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver
+     * @param OptionsResolver|OptionsResolverInterface $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'redactor' => false
-        ));
+        ]);
     }
 
     /**
-     * @param \Symfony\Component\Form\FormView $view
+     * @param \Symfony\Component\Form\FormView      $view
      * @param \Symfony\Component\Form\FormInterface $form
-     * @param array $options
+     * @param array                                 $options
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         parent::buildView($view, $form, $options);
 
-        $config = $this->redactorService->getWebConfiguration($form->getAttribute('redactor'));
+        $config = $this->redactorService->getWebConfiguration($form->getConfig()->getAttribute('redactor'));
         $view->vars['redactor_config'] = $config;
     }
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array                                        $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

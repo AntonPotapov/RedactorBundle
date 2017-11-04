@@ -6,7 +6,7 @@ Bundle is destined to add Redactor WYSIWYG editor to your Symfony2 project.
 
 This bundle does not include original Redactor JavaScript library, for using it you should get it from official website http://imperavi.com/redactor/download/
 
-## Installation for Symfony 2.1
+## Installation for Symfony 3.1
 
 ### composer.json
 ```js
@@ -17,7 +17,7 @@ This bundle does not include original Redactor JavaScript library, for using it 
 },
 "repositories": [
     {
-        "url": "https://github.com/AStepanov/RedactorBundle.git",
+        "url": "https://github.com/AntonPotapov/RedactorBundle.git",
         "type": "vcs"
     }
 ],

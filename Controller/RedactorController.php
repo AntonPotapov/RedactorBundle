@@ -72,7 +72,7 @@ class RedactorController extends Controller
         try {
             $this->isAllowException($env);
             /* @var $upFile \Symfony\Component\HttpFoundation\File\UploadedFile */
-            $upFile = $this->getRequest()->files->get('file');
+            $upFile = $this->get('request_stack')->getCurrentRequest()->files->get('file');
             $this->getRedactor()->validateFile($type, $env, $upFile);
             $response = $this->getRedactor()->uploadFile($type, $env, $upFile);
         } catch(ValidatorException $e) {
